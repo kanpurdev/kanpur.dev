@@ -91,25 +91,42 @@ export default function Footer() {
         <div className="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono text-white/30">
           <span>&copy; 2026 kanpur.dev. All telemetry active.</span>
           <div className="flex flex-col sm:flex-row items-center gap-3">
-            <a
-              href="https://chiragvishnoi-01.github.io/chirag.dev/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 group text-white/30 hover:text-accent-orange transition-colors duration-300"
-            >
-              <Shield className="w-4 h-4 text-accent-cyan group-hover:rotate-12 transition-transform duration-300" />
-              <span>Design by <span className="text-white hover:text-accent-orange transition-colors duration-300 font-bold">chirag.dev</span></span>
-            </a>
-            <span className="hidden sm:inline text-white/10">|</span>
-            <a
-              href="https://kanpurai.space"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/30 hover:text-accent-pink transition-colors duration-300"
-            >
-              Node: <span className="text-white hover:text-accent-pink transition-colors duration-300 font-bold">kanpurai.space</span>
-            </a>
-          </div>
+  <div className="flex items-center gap-2 text-white/30">
+    <span>Built with</span>
+
+    <a
+      href="https://chiragvishnoi-01.github.io/chirag.dev/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group"
+    >
+      <span className="text-red-500 hover:scale-110 inline-block transition-transform duration-300">
+        ❤️
+      </span>
+    </a>
+
+    <span>
+      by{" "}
+      <span className="text-white font-bold hover:text-accent-orange transition-colors duration-300">
+        chirag.dev
+      </span>
+    </span>
+  </div>
+
+  <span className="hidden sm:inline text-white/10">|</span>
+
+  <a
+    href="https://kanpurai.space"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-white/30 hover:text-accent-pink transition-colors duration-300"
+  >
+    &{" "}
+    <span className="text-white hover:text-accent-pink transition-colors duration-300 font-bold">
+      kanpur
+    </span>
+  </a>
+</div>
         </div>
       </div>
     </footer>
