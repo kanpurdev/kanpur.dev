@@ -104,13 +104,6 @@ export default function Footer() {
         ❤️
       </span>
     </a>
-
-    <span>
-      by{" "}
-      <span className="text-white font-bold hover:text-accent-orange transition-colors duration-300">
-        chirag.dev
-      </span>
-    </span>
   </div>
 
   <span className="hidden sm:inline text-white/10">|</span>
