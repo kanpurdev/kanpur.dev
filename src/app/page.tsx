@@ -18,8 +18,8 @@ export default function Page() {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground overflow-hidden selection:bg-accent-orange/30 selection:text-white">
-      {/* Cinematic Digital Preloader */}
+    <div className="relative min-h-screen bg-background text-foreground overflow-hidden selection:bg-accent-orange/30 selection:text-white antialiased">
+      {/* Cinematic Digital Preloader - Initiates the immersive UX */}
       <Preloader onComplete={() => setIsLoading(false)} />
 
       {/* Global Cinematic Noise Overlay */}

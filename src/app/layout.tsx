@@ -41,6 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased bg-[#030305] text-[#f3f4f6]">
+        {/* kanpur.dev Core Layout Engine with Cinematic Scroll & Custom Cursor */}
         <SmoothScroll>
           <CustomCursor />
           {children}
