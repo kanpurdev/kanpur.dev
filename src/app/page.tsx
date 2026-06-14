@@ -12,10 +12,11 @@ import Team from "@/components/Team";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 
 export default function Page() {
   const [isLoading, setIsLoading] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="relative min-h-screen bg-background text-foreground overflow-hidden selection:bg-accent-orange/30 selection:text-white antialiased">
@@ -37,6 +38,7 @@ export default function Page() {
 
           {/* Navigation Links */}
           <nav className="hidden md:flex items-center gap-8">
+            
             {["About", "Events", "Gallery", "Contributors", "FAQ"].map((item, idx) => (
               <a
                 key={idx}
@@ -48,18 +50,48 @@ export default function Page() {
               </a>
             ))}
           </nav>
-
+            {/* Mobile Hamburger */}
+<button
+  onClick={() => setMenuOpen(!menuOpen)}
+  className="md:hidden text-white"
+  aria-label="Toggle Menu"
+>
+  {menuOpen ? <X size={24} /> : <Menu size={24} />}
+</button>
           {/* Header Action Button */}
           <a
-            href="#events"
-            className="flex items-center gap-1.5 px-5 py-2.5 text-xs font-mono font-bold tracking-widest text-white bg-white/5 hover:bg-accent-orange hover:border-accent-orange border border-white/5 rounded-full transition-all duration-300 hover:scale-105 hover-trigger"
-          >
+  href="#events"
+  className="hidden md:flex items-center gap-1.5 px-5 py-2.5 text-xs font-mono font-bold tracking-widest text-white bg-white/5 hover:bg-accent-orange hover:border-accent-orange border border-white/5 rounded-full transition-all duration-300 hover:scale-105 hover-trigger"
+>
             LAUNCH DEV
             <ArrowUpRight className="w-3.5 h-3.5" />
           </a>
         </div>
       </header>
-
+            {menuOpen && (
+  <div className="md:hidden fixed top-24 left-4 right-4 z-50 rounded-2xl border border-white/10 bg-background/95 backdrop-blur-xl p-6">
+    <nav className="flex flex-col gap-5">
+      {["About", "Events", "Gallery", "Contributors", "FAQ"].map(
+        (item, idx) => (
+          <a
+            key={idx}
+            href={`#${
+              item === "Gallery"
+                ? "photos"
+                : item === "Contributors"
+                ? "team"
+                : item.toLowerCase()
+            }`}
+            onClick={() => setMenuOpen(false)}
+            className="text-white/80 hover:text-white"
+          >
+            {item}
+          </a>
+        )
+      )}
+    </nav>
+  </div>
+)}
       {/* Sequence Stack */}
       <main>
         <Hero />

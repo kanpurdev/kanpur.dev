@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
+
 interface FAQItemProps {
   question: string;
   answer: string;
@@ -49,6 +50,7 @@ function FAQItem({ question, answer, idx }: FAQItemProps) {
 }
 
 export default function FAQ() {
+  const [searchQuery, setSearchQuery] = useState("");
   const faqs = [
     {
       question: "Who can join the kanpur.dev ecosystem?",
@@ -67,6 +69,14 @@ export default function FAQ() {
       answer: "Absolutely! If you possess deep technical background in areas like WebGL/Shader models, distributed computing, cloud orchestration, compiler structures, or core frontends, write to us to design a slot.",
     },
   ];
+  const filteredFaqs = faqs
+  .map((faq, index) => ({
+    ...faq,
+    originalIndex: index,
+  }))
+  .filter((faq) =>
+    faq.question.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <section
@@ -91,10 +101,30 @@ export default function FAQ() {
         </div>
 
         {/* Accordions Stack */}
+        <div className="mb-8">
+  <input
+    type="text"
+    placeholder="Search FAQs..."
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+    className="w-full px-5 py-4 rounded-2xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 outline-none focus:border-accent-orange transition-all"
+    aria-label="Search FAQs"
+  />
+</div>
         <div className="flex flex-col gap-5">
-          {faqs.map((faq, index) => (
-            <FAQItem key={index} idx={index} {...faq} />
-          ))}
+          {filteredFaqs.map((faq) => (
+  <FAQItem
+    key={faq.originalIndex}
+    idx={faq.originalIndex}
+    question={faq.question}
+    answer={faq.answer}
+  />
+))}
+          {filteredFaqs.length === 0 && (
+  <div className="text-center py-8 text-white/50">
+    No matches found
+  </div>
+)}
         </div>
       </div>
     </section>
