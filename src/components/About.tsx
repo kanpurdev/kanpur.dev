@@ -142,15 +142,7 @@ export default function About() {
                 <Activity className="w-3.5 h-3.5 text-accent-orange animate-pulse" />
                 <span>SYS STATUS: ACTIVE_NODE</span>
               </div>
-              <button
-                onClick={() => {
-                  setTerminalText("");
-                  setTerminalStep(0);
-                }}
-                className="w-8 h-8 rounded-full bg-white/5 border border-white/10 hover:border-accent-orange hover:bg-accent-orange/10 hover:text-accent-orange flex items-center justify-center transition-all duration-300"
-              >
-                <Play className="w-3 h-3" />
-              </button>
+              
             </div>
           </div>
 
