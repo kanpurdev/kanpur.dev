@@ -1,8 +1,35 @@
 "use client";
 
-import { Github, Twitter, MessageSquare, ArrowRight, Shield } from "lucide-react";
+import { useState } from "react";
+import { Github, Twitter, MessageSquare, ArrowRight } from "lucide-react";
 
 export default function Footer() {
+const [email, setEmail] = useState("");
+const [loading, setLoading] = useState(false);
+const [success, setSuccess] = useState("");
+const [error, setError] = useState("");
+
+const handleSubmit = async (e: any) => {
+  e.preventDefault();
+
+  setSuccess("");
+  setError("");
+
+  if (!email.trim()) {
+    setError("Email is required");
+    return;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(email)) {
+    setError("Please enter a valid email address");
+    return;
+  }
+
+  setSuccess(`Subscribed: ${email}`);
+  setEmail("");
+};
   return (
     <footer className="relative bg-background overflow-hidden border-t border-white/5 z-10">
       {/* Background visual grid overlay */}
@@ -71,12 +98,14 @@ export default function Footer() {
             <p className="text-white/45 text-sm leading-relaxed max-w-xs font-sans">
               Subscribe to receive instant pings for hackathons, technical meetups, and ecosystem indicators.
             </p>
-            <form onSubmit={(e) => e.preventDefault()} className="flex items-center gap-2 mt-2">
+            <form onSubmit={handleSubmit} className="flex items-center gap-2 mt-2">
               <input
-                type="email"
-                placeholder="developer@domain.com"
-                className="flex-1 px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-accent-orange/40 text-sm transition-colors"
-              />
+  type="email"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  placeholder="developer@domain.com"
+  className="flex-1 px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-accent-orange/40 text-sm transition-colors"
+/>
               <button
                 type="submit"
                 className="w-10 h-10 rounded-lg bg-accent-orange hover:bg-accent-pink text-white flex items-center justify-center transition-colors duration-300"
@@ -84,6 +113,17 @@ export default function Footer() {
                 <ArrowRight className="w-4.5 h-4.5" />
               </button>
             </form>
+            {success && (
+  <p className="text-green-400 text-sm mt-2">
+    {success}
+  </p>
+)}
+
+{error && (
+  <p className="text-red-400 text-sm mt-2">
+    {error}
+  </p>
+)}
           </div>
         </div>
 
