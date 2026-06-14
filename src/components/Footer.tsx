@@ -12,8 +12,22 @@ const [error, setError] = useState("");
 const handleSubmit = async (e: any) => {
   e.preventDefault();
 
-  setSuccess(`Subscribed: ${email}`);
+  setSuccess("");
   setError("");
+
+  if (!email.trim()) {
+    setError("Email is required");
+    return;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(email)) {
+    setError("Please enter a valid email address");
+    return;
+  }
+
+  setSuccess(`Subscribed: ${email}`);
   setEmail("");
 };
   return (
